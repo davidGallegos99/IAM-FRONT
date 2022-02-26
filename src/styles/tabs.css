@@ -1,0 +1,66 @@
+
+  /* Style the tab */
+  /* .collapse {
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    margin-top: 2.5rem;
+    width: 100%;
+    overflow: auto;
+    text-align: center;
+    display: flex;
+  } */
+
+  .tab {
+      font-family: Mulish;
+    box-sizing: border-box;
+    margin-top: 2.5rem;
+    width: 100%;
+    overflow: auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    width: 100%;
+    background-color: inherit;
+    text-align: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 8px 40px;
+    transition: 0.3s;
+    font-size: 17px;
+    border-bottom: 1px solid #ccc;
+    font-weight: 400;
+  }
+  @media (min-width:768px) {
+      .tab button {
+        padding: 14px 16px;
+      }
+  }
+  .active{
+      border-bottom: 2px solid rgb(13, 119, 218) !important;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  
+  /* Style the tab content */
+  .tabcontent {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    height: auto;
+    width: 100%;
+    display: flex;
+    margin-bottom: 4rem;
+    justify-content: center;
+  }
+  .tab-container {
+      width: 90%;
+  }

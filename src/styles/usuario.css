@@ -1,0 +1,10 @@
+.user-title {
+    font-family: Inter;
+}
+.actions img {
+    margin-right: .8rem;
+}
+
+.actions img:hover {
+    cursor: pointer;
+}

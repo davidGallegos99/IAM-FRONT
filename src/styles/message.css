@@ -1,0 +1,19 @@
+.toast-container {
+    background-color: #20315C;
+    border-radius: 24px;
+    padding: 2rem;
+    width: 100%;
+}
+
+
+.toast-message {
+    display: flex; 
+    color: #FFFF;  
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.toast-icon {
+    margin-right: 18px;
+}

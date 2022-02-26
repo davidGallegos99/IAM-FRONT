@@ -1,0 +1,130 @@
+
+.submit {
+    background-color: #1048a4;
+    border: none;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--blanco);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 1.9rem;
+    width: 100%;
+    transition: background-color 300ms ease;
+  }
+  .login-input {
+    width: 300px;
+    height: 45px;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background: transparent;
+    font-family: 'Montserrat';
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    align-content: center;
+    color: #FFFFFF;
+    background-repeat: no-repeat;
+    display: flex;
+    align-content: center;
+    line-height: 20px;
+    align-items: center;
+    padding-left: 47px;
+    background-position: 10px;
+  }
+  
+  .login-input::placeholder {
+    
+    font-family: 'Montserrat';
+    color: #FFFFFF;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    align-content: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+  .login-input:focus{
+    outline: none;
+  
+  }
+  
+  .login-submit {
+    width: 300px;
+    height: 45px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    color: #2148C0;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    border: none;
+  }
+
+  .login-message-container{
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+  @media (min-width:768px) {
+    .login-message-container{
+      width: 70%;
+    }
+  }
+  @media (min-width:920px) {
+    .login-message-container{
+      width: 40%;
+    }
+  }
+  .login-submit:hover{
+      cursor: pointer;
+  }
+  .submit-loading {
+    opacity: 0.5;
+    background: #e4e2e2;
+  }
+  
+  .login-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .login-user {
+    background-image: url(../images/user.svg);
+  
+  }
+  .login-password {
+    background-image: url(../images/lock.svg);
+  
+  }
+  
+ .mb-4 {
+    margin-bottom: 2.3rem;
+}
+
+.register:hover{
+    cursor: pointer;
+  }
+  
+  .checked {
+    border:  2px solid rgb(37, 230, 37);
+  }
+  
+  .is-used {
+    border: 2px solid rgb(231, 74, 74);
+  }
+    
+  .text-white {
+      color: white;
+      font-family: 'Lato';
+      margin-top: 1rem;
+      text-align: right;
+  }

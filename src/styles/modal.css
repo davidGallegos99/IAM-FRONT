@@ -1,0 +1,74 @@
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation-name: fadeIn;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    font-family: 'Mulish';
+
+
+}
+
+.show {
+    display: block;
+    transition: 2.5s ease-in-out;
+}
+
+.modal-content {
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    min-width: 90%;
+    background-color: #fff;
+}
+@media (min-width:768px) {
+    .modal-content{
+        min-width: 60%;
+    }
+}
+@media (min-width:900px) {
+    .modal-content{
+        min-width: 40%;
+    }
+}
+
+.modal-body, .modal-header, .modal-footer {
+    padding: 15px;
+}
+.modal-header {
+    font-size: 20px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+.modal-header img:hover  {
+    cursor: pointer;
+}
+.modal-body {
+}
+.modal-footer {
+    border-top: 1px solid rgb(190, 189, 189);
+    display: flex;
+    justify-content: flex-end;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+

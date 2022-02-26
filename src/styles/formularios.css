@@ -1,0 +1,24 @@
+.contenedor-formulario {
+    width: 100%;
+   font-family: Mulish;
+}
+.label-perm  {
+    margin-bottom: 1rem;
+}
+
+.campo-permiso {
+    margin-bottom: 1rem;
+}
+
+.ant-input {
+    height: 37px;
+    width: 100%;
+    outline: none;
+    padding-left: .5rem;
+}
+
+.ant-form-item-explain-error {
+    color: red;
+    font-weight: bold;
+    font-family: 'Mulish';
+}

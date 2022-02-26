@@ -1,0 +1,122 @@
+.table-container {
+    margin-top: 2.5rem;
+    background: #F4F7FC;
+    width: 85%;
+    margin-bottom: 4.5rem;
+}
+
+.header-table {
+    padding: 1.5rem 2.5rem .3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+@media (min-width:990px) {
+    .header-table {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.header-table input{
+    outline: none;
+    background: #DAE1EC;
+    border-radius: 4px;
+    border: none;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 1rem;
+    background-image: url('../assets/icons/seach.svg') ;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-x: 10px;
+    padding-left: 2.3rem;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #2E3B52;
+}
+@media (min-width:990px) {
+    .header-table input {
+        width: 30%;
+    }
+}
+
+.table-body {
+    width: 100%;
+    overflow-x: scroll;
+    height: 738px;
+    
+}
+@media (min-width:768px) {
+    .table-body{
+        overflow-x: unset;
+    }
+}
+.table-body table {
+    border: none;
+    width: 100%;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    border-collapse: collapse;
+}
+.table-body table thead  {
+    border: none;
+}
+
+
+.table-body table thead tr {
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    background: #F4F7FC;
+    font-weight: bold;
+}
+.table-body table tbody tr {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;    
+    text-align: center;
+}
+
+td, th{
+    padding: 21px 0;
+
+}
+
+.footer-tabla {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 0;
+    align-items: center;
+    width: 100%;
+    background-color: #F4F7FC;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+}
+.footer-tabla > p {
+    margin-right: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+@media(min-width:670px) {
+    .footer-tabla{
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 1.5rem 2.5rem;
+    }
+    .footer-tabla  > p{
+     margin-right: 3rem; 
+     margin-top: 0rem;
+     margin-bottom: 0rem;
+    }
+}
+
+.change-page:hover{
+    cursor: pointer;
+}

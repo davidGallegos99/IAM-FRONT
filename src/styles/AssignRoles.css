@@ -1,0 +1,124 @@
+.assign-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.pan-tab {
+    font-size: 16px;
+    font-family: Mulish;
+}
+.ant-collapse-header{
+    font-weight: bold;
+}
+.form-tab {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+}
+@media (min-width:768px) {
+    .form-tab {
+        grid-template-columns: repeat(3, 2fr);
+    }
+}
+@media (min-width:1000px) {
+    .form-tab {
+        grid-template-columns: repeat(4, 2fr);
+    }
+}
+.form-if {
+    display: grid;
+    grid-template-columns: repeat(1, 2fr);
+}
+input:checked ~ .checkmark{
+    background-color: red;
+}
+.assign-field {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    width: 100%;
+}
+@media(min-width:768px) {
+    .assign-field {
+        
+    }
+}
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+@media(min-width:768px) {
+    .form-group {
+        width: 50%;
+    }
+}
+
+.resume {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+@media(min-width:768px) {
+    .resume {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.assign-field label {
+    margin-bottom: .5rem;
+    font-family: Mulish;
+    font-weight: bold;
+}
+.assign-field input, textarea {
+    padding: 10px;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+.assign-permisos {
+    font-weight: 800;
+    font-size: 20px;
+    color: cornflowerblue;
+    font-family: Mulish;
+}
+.header-assign-permisos{
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+@media (min-width:768px) {
+    .header-assign-permisos{
+        flex-direction: column;
+        justify-content: unset;
+        justify-content: flex-end;
+    }
+    .header-assign-permisos > p {
+        margin-bottom: 1.5rem;
+        
+    }
+
+}
+.permisos-collapse-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+    
+}
+
+.collapse{
+    font-family: Mulish;
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 100%;
+    overflow: auto;
+    text-align: center;
+    display: flex;
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+}
