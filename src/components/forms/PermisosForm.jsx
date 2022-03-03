@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Form, Input, InputNumber, Button, Select } from 'antd';
+import { Form, Input, Button, Select } from 'antd';
 import '../../styles/formularios.css'
 
 const { Option } = Select;

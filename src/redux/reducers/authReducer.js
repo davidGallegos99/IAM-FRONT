@@ -10,7 +10,8 @@ export const authReducer = (state = {} , action) => {
                 first_name:action.payload.first_name,
                 last_name:action.payload.last_name,
                 token: action.payload.token,
-                refreshToken:action.payload.refreshToken
+                refreshToken:action.payload.refreshToken,
+                rol:action.payload.rol
             }
         case types.logout:
             return {}

@@ -1,4 +1,4 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux'
+import { combineReducers, createStore, applyMiddleware , compose} from 'redux'
 import thunk from 'redux-thunk';
 import { authReducer } from '../reducers/authReducer';
 import storage from 'redux-persist/lib/storage'
@@ -19,7 +19,7 @@ const reducers = combineReducers({
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist:['permisosReducer']
+    blacklist:['permisosReducer','uiReducer']
 };
 const persistedReducer = persistReducer(persistConfig, reducers); 
 

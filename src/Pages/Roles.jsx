@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table } from '../components/Table'
 import '../styles/usuario.css'
 import EditIcon from '../assets/icons/editicon.svg'
@@ -7,7 +7,6 @@ import ActiveIcon from '../assets/icons/active.svg'
 import InactiveIcon from '../assets/icons/inactive.svg'
 import PlusIcon from '../assets/icons/plus.svg'
 import { UseFetch } from '../hooks/UseFetch'
-import { useState } from 'react/cjs/react.development'
 import '../styles/permisos.css'
 import { Modal } from '../components/Modal'
 import { Toast } from '../components/Toast'
@@ -17,6 +16,7 @@ import { AssignRoles } from '../components/AssignRoles'
 import { ArrowLeftOutlined } from '@ant-design/icons/lib/icons'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
+const { VITE_SUPERADMIN_ROL: SUPERADMIN_ROL } = import.meta.env
 
 
 
@@ -137,9 +137,16 @@ export const Roles = () => {
     },[reqRoles.loading, reqRoles.error])
 
     const Actions = ({record}) => (
+        
         <div className='actions'>
-            <img src={EditIcon} onClick={()=>setshowTab(true)} />
-            <img src={DeleteIcon} onClick={()=>console.log(record)} />
+            {
+                record._id != SUPERADMIN_ROL && (
+                    <>
+                        <img src={EditIcon} onClick={()=>setshowTab(true)} />
+                        <img src={DeleteIcon} onClick={()=>console.log(record)} />
+                    </>
+                )
+            }
         </div>
     )
 

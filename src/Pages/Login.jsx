@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { UseFetch } from '../hooks/UseFetch';
 import { UseForm } from '../hooks/UseForm';
@@ -18,12 +18,14 @@ export const Login = () => {
     const [form, handleInputChange, resetForm] = UseForm(initialState);
     const [mensaje, setmensaje] = useState('');
     const navigate = useNavigate();
-    const [isRegister, setIsRegister] = useState(false);
+    const [isChangePass, setIschangePass] = useState(false);
     const [checkEmail, setcheckEmail] = UseFetch();
     const [checkUser, setcheckUser] = UseFetch();
     const [validEmail, setvalidEmail] = useState(false);
     const [reqRegister, setReqRegister] = UseFetch();
+    const [type, settype] = useState('')
     const dispatch  = useDispatch();
+    const [currentPass, setcurrentPass] = useState('')
 
 
     useEffect(() => {
@@ -37,9 +39,11 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         if(form.email.trim() == '' || form.password.trim() == '') {
+            settype('error')
             setmensaje('Complete los campos correctamente');
             setTimeout(() => {
                 setmensaje('')
+                settype('')
             }, 3000);
             return;
         }
@@ -51,39 +55,39 @@ export const Login = () => {
         sendLogin(opts);
     }
 
-    const handleRegister = (e) => {
+    const handleChangePass = (e) => {
         e.preventDefault();
 
-        if(form.email.trim() == '' || form.password.trim() == ''  || form.password2.trim() == '') {
+        if(form.password.trim() == ''  || form.password2.trim() == '') {
             setmensaje('Complete todos los campos')
+            settype('error')
             setTimeout(() => {
                 setmensaje('')
+                settype('')
             }, 3000);
             return
         }
         
-        if(!checkEmail.data?.available) {
-            setmensaje('Email ya esta en uso.')
-            setTimeout(() => {
-                setmensaje('')
-            }, 3000);
-            return
-        }
+    
         if ((form.password !== form.password2)) {
+            settype('error')
             setmensaje('Las contrasenas no coinciden.')
             setTimeout(() => {
+                settype('')
                 setmensaje('')
             }, 3000);
             return
         }
         setmensaje('')
         const dataToSend = {
-            email:form.email,
-            username: form.username,
-            password:form.password
+            usuario:loginReq.data.data._id,
+            password:form.password,
+            password2:form.password2,
+            current: currentPass
         }
+        console.log(dataToSend);
         setReqRegister({
-            url: '/usuario/create',
+            url: '/usuario/changePass',
             method: 'post',
             body: dataToSend
         })
@@ -107,32 +111,50 @@ export const Login = () => {
  
 
     useEffect( () => {
-        if(!loginReq.error && loginReq.data)  {
+        if(!loginReq.error && loginReq.data && !loginReq.data?.data?.rol?.admin) {
+            settype('error')
+            setmensaje('Este usuario no tiene acceso a esta plataforma');
+            return
+        }
+        // Va a cambiar la contrasena asignada al crear la cuenta
+        if(!loginReq.error && loginReq.data && !loginReq.data?.data?.changePassword){
+            setcurrentPass(form.password)
+            setIschangePass(true)
+            return
+        }
+
+        if(!loginReq.error && loginReq.data && loginReq.data?.data?.changePassword && loginReq.data?.data?.rol?.admin )  {
             setmensaje('');
+            settype('')
             navigate('/home');
             dispatch(loginAction(loginReq.data.data));
+            setTimeout(() => {
+                location.reload();
+            }, 300);
+            return
+
         } else if(loginReq.error){
+            settype('error')
             setmensaje('Credenciales incorrectas');
+            return
         }
     },[loginReq.loading, loginReq.error]);
 
 
-    useEffect( () => {
-        if(!checkEmail.error && checkEmail.data?.available)  {
-            setmensaje('');
-        } else if(!checkEmail.error || !checkEmail.data?.available){
-            setmensaje('Email ya esta en uso');
-        }
-    },[checkEmail.loading, checkEmail.error]);
+    
 
 
 
     useEffect( () => {
         if(!reqRegister.error && reqRegister.data)  {
-            setmensaje('');
-            navigate('/home');
-            location.reload();
+            document.getElementById('loginForm').reset();
+            settype('success')
+            setmensaje('Se cambio la contraseña con exito');
+            setTimeout(() => {
+                location.reload();
+            }, 4000);
         } else if(reqRegister.error){
+            settype('error')
             setmensaje('Ha ocurrido un error, intentelo de nuevo mas tarde.');
         }
     },[reqRegister.loading, reqRegister.error]);
@@ -140,7 +162,7 @@ export const Login = () => {
     useEffect(()=>{
             setmensaje('');
             document.getElementById('loginForm').reset();
-    },[isRegister])
+    },[isChangePass])
 
     return (
         <div className="login-container">
@@ -153,23 +175,24 @@ export const Login = () => {
                 mensaje && (
                     <div className='login-message-container'>
                         <Toast 
-                            type="error"
+                            type={type}
                             key="toast"
                         >{mensaje}</Toast>
                     </div>
                 )
             }
-            <form id="loginForm" autoComplete="off" onSubmit={!isRegister ? handleLogin : handleRegister} className=" form mt-4">
-                <div className="mb-4">
+            <form id="loginForm" autoComplete="off" onSubmit={!isChangePass ? handleLogin : handleChangePass} className=" form mt-4">
+               {
+                   !isChangePass && (
+                    <div className="mb-4">
                     <div className="col-md-12 d-flex justify-content-center">
                         <div className="form-group">
-                            <input id="email" type="email" onChange={(e)=>{
-                                handleInputChange(e);
-                                if(isRegister) handleCheckEmail(e);
-                            }}  name="email" className={`login-input login-user ${ validEmail && (checkEmail.data?.statusCode && isRegister && checkEmail.data?.ok) ? 'checked' : ((!validEmail && isRegister && form?.email?.length > 5) || (checkEmail.data?.statusCode && isRegister && !checkEmail.data?.ok )) && 'is-used'}`} placeholder="email" />
+                            <input id="email" type="email" onChange={(e)=>{handleInputChange(e)}}  name="email" className={`login-input login-user`} placeholder="email" />
                         </div>
                     </div>
                 </div>
+                   )
+               }
                 
                 <div className="row mb-4">
                     <div className="col-md-12 d-flex justify-content-center">
@@ -179,7 +202,7 @@ export const Login = () => {
                     </div>
                 </div>
                 {
-                    isRegister && (
+                    isChangePass && (
                         <div className="row mb-4">
                             <div className="col-md-12 d-flex justify-content-center">
                                 <div className="form-group">
@@ -191,8 +214,7 @@ export const Login = () => {
                 }
                 <div className="row mt-5 d-flex flex-column align-items-center">
                     <div className="col-md-12 flex-end d-flex flex-column align-items-center">
-                        <input type="submit" value={!loginReq.loading && !reqRegister.loading && !isRegister ? 'LOGIN' : !loginReq.loading && !reqRegister.loading && isRegister ? 'REGISTRARSE' : loginReq.loading || reqRegister.loading ? 'ESPERE...' : null} className={`login-submit ${loginReq.loading || reqRegister.loading && 'submit-loading'}`} disabled={loginReq.loading || reqRegister.loading} />
-                        <p onClick={()=> setIsRegister(!isRegister)} className="text-white mt-3 register" >{!isRegister ? 'No tienes una cuenta?' : 'Iniciar sesion'}</p>
+                        <input type="submit" value={!loginReq.loading && !reqRegister.loading && !isChangePass ? 'LOGIN' : !loginReq.loading && !reqRegister.loading && isChangePass ? 'CAMBIAR CONTRASEÑA' : loginReq.loading || reqRegister.loading ? 'ESPERE...' : null} className={`login-submit ${loginReq.loading || reqRegister.loading && 'submit-loading'}`} disabled={loginReq.loading || reqRegister.loading} />
                     </div>
                 </div>
             </form>

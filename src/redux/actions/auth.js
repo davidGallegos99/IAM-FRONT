@@ -8,7 +8,8 @@ export const loginAction = (user) => ({
         first_name:user.first_name,
         last_name:user.last_name,
         token: user.token,
-        refreshToken:user.refreshToken
+        refreshToken:user.refreshToken,
+        rol:user.rol
     }
 })
 
